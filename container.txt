@@ -1,0 +1,25 @@
+Decidi utilizar um container ubuntu pra esse módulo do Python porque o instrutor utiliza Linux e faz muitos exemplos usando 
+variáveis de ambiente, então acredito que seja melhor para fazer esse treinamentos
+
+O plano é fazer o código no VSCode do Windows e executar no Linux
+
+Para executar o container usando um volume:
+    > docker run -it -v C:\python_base\codigo:/code -w /code ubuntu:23.04
+
+Para conectar no mesmo container a partir de outro prompt:
+# ver qual é o id do continaer:
+    > docker ps
+# conectar no container:
+    > docker exec -it <container_id_or_name> /bin/bash
+    > exemplo: docker exec -it 78452d82ddeb /bin/bash
+
+Para manter os pacotes instalados e gerar uma nova imagem:
+    > docker commit <container_id> your_new_image_name
+        > docker commit 02482d3dab11 python
+    > docker run -it -v C:\python_base\codigo:/code -w /code your_new_image_name
+        > docker run -it -v C:\python_base\codigo:/code -w /code python
+
+
+
+
+
