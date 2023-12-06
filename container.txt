@@ -5,6 +5,8 @@ O plano é fazer o código no VSCode do Windows e executar no Linux
 
 Para executar o container usando um volume:
     > docker run -it -v C:\python_base\codigo:/code -w /code ubuntu:23.04
+Nova imagem criada com Python:
+    > docker run -it -v C:\python_base\codigo:/code -w /code python
 
 Para conectar no mesmo container a partir de outro prompt:
 # ver qual é o id do continaer:
