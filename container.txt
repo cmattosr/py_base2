@@ -5,8 +5,9 @@ O plano é fazer o código no VSCode do Windows e executar no Linux
 
 Para executar o container usando um volume:
     > docker run -it -v C:\python_base\codigo:/code -w /code ubuntu:23.04
-Nova imagem criada com Python:
+Novas imagens criada com Python:
     > docker run -it -v C:\python_base\codigo:/code -w /code python
+    > docker run -it -v C:\python_base\codigo:/code -w /code python2
 
 Para conectar no mesmo container a partir de outro prompt:
 # ver qual é o id do continaer:
@@ -22,6 +23,17 @@ Para manter os pacotes instalados e gerar uma nova imagem:
         > docker run -it -v C:\python_base\codigo:/code -w /code python
 
 
+Para executar o python dentro do container:
+> python3
+    # exemplo
+    > python3 -m site
 
 
+Para criar um amiente virtual:
+> python3 -m venv <<nome_do_ambiente (melhor prática: .venv)>>
+    # exemplo
+    > python3 -m venv .venv
+
+Para ativar p ambiente virtual:
+> source .venv/bin/activate
 
