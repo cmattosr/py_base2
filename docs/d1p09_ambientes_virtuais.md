@@ -1,124 +1,126 @@
-Ambientes Virtuais
-Até agora fizemos um script independente, o nosso hello.py que não possui dependências e pode rodar em qualquer ambiente com Python.
+# Blocos de Código
 
-Porém conforme nossos programas ficam mais complexos acabamos utilizando soluções prontas do ecossistema Python, o PyPI, repositório de pacotes oferece mais 300 mil pacotes para reutilizar.
+Para entender o funcionamento de blocos de código em Python vamos analisar
+as motivações do criador da linguagem.
 
-Qual o problema?
+Antes de criar o Python, Guido Van Rossum trabalhou no desenvolvimento de
+outra linguagem chamada ABC e o objetivo dessa linguagem era ser uma
+linguagem de fácil leitura por pessoas de outras areas academicas.
 
-Se instalarmos as bibliotecas do PyPI diretamente no Python principal do sistema podemos criar conflitos e deixar o ambiente muito cheio de biblitecas que podem se tornar obsoletas.
+Ele partiu do principio de que passamos muito mais horas lendo código
+do que escrevendo e concluiu que a maneira tradicional que as linguagens
+adotavam para demilitar código não seria tão natural para quem não está 
+acostumado.
 
-Para resolver esse problemas o recomendado é criarmos um sandbox, um ambiente separado onde podemos ter uma cópia do ambiente Python isolada onde não corremos o risco de criar conflitos.
+Uma grande parte das linguagens utiliza chaves `{ }` para delimitar os blocos
+de código ficando mais ou menos assim
 
-Ambiente real
-Para saber qual é o ambiente real do Python utilize:
+```c
+statement (condicao) {
+	primeira linha do bloco;
+	segunda linha do bloco;
+	terceira linha (condicao) {
+		primeira linha do sub bloco;
+	}
+}
+```
 
-python3 -m site
-Este comando retorna os cominhos de instalação do Python e suas bibliotecas, para criar um ambiente virtual a partir destes arquivos basta copiarmos tudo isso para um novo local isolado.
+E para o Guido essa forma de organizar código não seria muito fácil de entender
+e manter e principalmente não seria tão agradável de ler em códigos grandes.
 
-Como este processo é algo bastante comum de ser feito, o próprio Python já vem com uma ferramenta que faz essa cópia automaticamente.
+## Lista de compras
 
-Ambiente Virtual
-O ambiente virtual é um sandbox, é uma cópia de todo o ambiente Python e a recomendação é que você tenha um ambiente virtual em cada um dos seus projetos cada projeto deve usar seu próprio conjunto de bibliotecas isoladamente.
+Ao fazer comprar no supermercado geralmente criarmos uma lista de compras
 
-Criando o ambiente virtual
+```text
+Feijao
+Sabão
+Arroz
+Batata
+Laranja
+Shampoo
+Alface
+Café
+```
 
-Na pasta do seu projeto usamos o módulop venv e informamos um nome para a pasta do ambiente ser criada, é comum que o nome seja .venv pois o . torna a pasta oculta no seu sistema e esse nome é comumente adotado.
+Para tornar esta lista mais fácil podemos organizar utilizando as seções do
+mercado como separador.
 
-cd python-base
-python3 -m venv .venv
-Ao executar esse comando irá notar que foi criada uma nova pasta chamada .venv e dentro dela tem a cópia de todos os arquivos do Python.
 
-$ ls -a .venv 
-.  ..  bin  include  lib  lib64  pyvenv.cfg  share
-Ali dentro da pasta bin é onde encontramos o python e também outras ferramentas como o pip e a apartir de agora todos os módulos que instalarmos vão para dentro da pasta lib.
+```text
+Mercearia:
+	Feijao
+	Arroz
+	Café
+Limpeza:
+	Sabão
+	Shampoo
+Feira:
+	Batata
+	Laranja
+	Alface
+```
 
-Mas para usar o ambiente virtual sempre será necessário efetuar a ativação, no linux isso é feito com o comando abaixo:
+A lista acima está muito mais organizado do que a primeira versão e permite
+que nossa experiência ao fazer compra seja mais produtiva, pois agora podemos 
+percorrer os corredores um a um sem a necessidade de passar duas vezes no mesmo
+corredor.
 
-source .venv/bin/activate
-Ao rodar o activate o seu prompt passa a exibir (.venv) que é o nome do ambiente virtual, e para se certificar execute novamente o módulo site.
+## Identação
 
-python3 -m site
-Repare que agora os caminhos de bibliotecas (1 e 4 da lista) apontam para a pasta isolada do seu projeto.
+Indentation, Identação ou Denticulação é o termo usado para a formatação da
+lista de compras acima, após cada categoria ou seção colocamos um **recuo**
+antes de começar o conteúdo.
 
-Outra forma de verificar qual Ambiente Python está ativado é usando o comando which
+E pensando neste exemplo natural o Python foi projetado, de forma que nós
+passamos muito mais tempo lendo código do que escrevendo.
 
-which python
-O retorno deve ser algo como ~/Projects/python-base/.venv/bin/python
+## Blocos
 
-IMPORTANTE sempre que abrir um terminal, antes de executar os comandos você deverá ativar o ambiente virtual do seu projeto. Existem ferramentas que podem fazer isso automaticamente para você como o zsh ou o poetry mas durante o aprendizado eu recomendo manter os comandos todos manuais para você fixar a idéia da necessidade deles e no futuro automatize.
-Git Ignore
-Em nosso projeto agora temos uma nova pasta .venv com centenas de arquivos e se fizermos um commit + push usando o git iremos mandar essa pasta toda para o repositório remoto do github e queremos evitar isso, a .venv é apenas para uso local, se outra pessoa precisar executar seu código ela terá que criar o ambiente virtual diretamente lá no ambiente que precisar.
+Em Python um bloco de código inicia sempre que existe a presença de `:` no final
+de uma linha.
 
-Crie um arquivo chamado .gitignore na raiz do projeto
+```py
+if 1 > 2:  # inicio de bloco
+```
 
-cd python-base
-touch .gitignore
-O comando touch do Linux cria um arquivo vazio e então você pode abrir ele com o seu editor para adicionar as pastar que queremos que fiquem de fora do controle do git.
+A linha que vem logo após o inicio do bloco deve obrigatoriamente ter um recuo (ou dente)
+e por isso chamamos de identação.
 
-Basta abrir o .gitignore e adicionar a linha:
+```py
+if 1 > 2:
+    # aqui começa o código do bloco
+    # o bloco pode ter muitas linhas
+    # desde que mantenha o mesmo recuo
+    # o recuo padrão é de 4 espaços.
+```
 
-.venv
-Uma outra forma mais fácil de fazer isso é com este comando:
+Dentro de um bloco de código podem existir muitos sub blocos, níveis internos
+de recuo, mas a recomandação é que no máximo existam 4.
 
-echo ".venv" >> .gitignore
-O comando acima adiciona o texto .venv no final do arquivo .gitignore
+```py
+if 1 > 2:
+    # aqui inicia o bloco
+    # recuo de 4 espaços
 
-Desta forma evitamos que a pasta venv vá para o git mas agora você precisa fazer um commit para adicionar o .gitignore.
+    while x < 10:
+        # aqui inicia outro sub bloco
+        # recuo de 8 espaços
 
-git add .gitignore
-git commit -m "adicionado git ignore"
-git push
-Instalando pacotes
-Agora sim podemos instalar pacotes dentro do nosso ambiente virtual :)
+        if x == 3:
+            # ainda mais um bloco
+            # recuo de 12 espaços
 
-Primeiro certifique-se de que (.venv) aparece em seu terminal ou que which python mostra o Python de dentro da pasta .venv.
+        # voltamos ao bloco anterior
 
-Agora a primeira coisa a fazer é usar o pip que é o gerenciador de pacotes do Python e através dele podemos instalar novas bibliotecas e ferramentas.
+    # agora voltamos para o bloco inicial
 
-Atualize o próprio pip
+# e aqui continuamos o bloco principal (main)
+```
 
-python3 -m pip install --upgrade pip
-Com o pip atualizado vamos instalar nosso primeiro pacote e ele se chama IPython
+A maior parte dos editores de código possui ferramentas 
+que ajudam a visualizar as linhas de identação.
 
-python3 -m pip install ipython
-O terminal Python que usamos até agora é muito bom e serve para fazer tudo o que precisamos mas faltam algumas coisas como output colorido que facilita a leitura das mensagens e também ferramentas mais fáceis para obter ajuda.
 
-O Ipython é uma versão do interpretadotr Python que possui mais funcionalidades.
 
-Digite ipython e perceba como ele é um pouco diferente do terminal que usamos anteriormente.
 
-$ ipython
-
-Python 3.10.2 (main, Jan 15 2022, 19:56:27) [GCC 11.1.0]
-Type 'copyright', 'credits' or 'license' for more information
-IPython 8.0.1 -- An enhanced Interactive Python. Type '?' for help.
-
-In [1]:
-
-É bastante similar, a única grande diferença que vai notar é que ao invés de exibir o prompt padrão >>> ele agora mostra In [1]: e fica a espera de alguma instrução, experimente digitar 1 + 1
-
-In [1]: 1 + 1
-Out[1]: 2
-Repare que a resposta vem em um novo prompt contento Out [1]: e isso é bastante poderoso pois ele grava um histórico de todos os seus comandos e você pode por exemplo digitar _1 ou _2 etc para acessar o retorno de algum comando que digitou anteriormente.
-
-Além disso o Ipython possui uma ajuda mais completa usando ? ou ?? ao invés de usar help()
-
-In [4]: print?
-Docstring:
-print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)
-
-Prints the values to a stream, or to sys.stdout by default.
-Optional keyword arguments:
-file:  a file-like object (stream); defaults to the current sys.stdout.
-sep:   string inserted between values, default a space.
-end:   string appended after the last value, default a newline.
-flush: whether to forcibly flush the stream.
-Type:      builtin_function_or_method
-E também oferece auto-complete, experimente começar a digitar por exemplo a letra p e depois pressionar tab e ele vai te mostrar um seletor com todos os objetos começados pela letra p.
-
-In [5]: p<tab>
- pass       %page      %pdef      %pinfo     %pprint    %psearch   %pycat     %%python2 
- pow()      %paste     %pdoc      %pinfo2    %precision %psource   %pylab     %%python3 
- print()    %pastebin  %%perl     %pip       %prun      %pushd     %%pypy               
- property   %pdb       %pfile     %popd      %%prun     %pwd       %%python             
-Recomendo que em todos os seus ambientes virtuais você adicione o Ipython :)
