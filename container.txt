@@ -37,3 +37,7 @@ Para criar um amiente virtual:
 Para ativar p ambiente virtual:
 > source .venv/bin/activate
 
+GITHUB
+Token name: PythonBase
+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
+Expires on Sat, Feb 8 2025.
