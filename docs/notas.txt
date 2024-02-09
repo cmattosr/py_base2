@@ -1,0 +1,4 @@
+Tipos Primários (Scalar Types)
+# o Python tem tipagem dinâmica
+# para saber o tipo de objeto: type(valor)
+- int
