@@ -1,4 +1,8 @@
-Tipos Primários (Scalar Types)
-# o Python tem tipagem dinâmica
-# para saber o tipo de objeto: type(valor)
-- int
+Tipos de Dados
+    Tipos Primários (Scalar Types)
+        # o Python tem tipagem dinâmica
+        # para saber o tipo de objeto: type(valor)
+        - int
+        - float
+        - booleano (True ou False)
+        - NoneType
