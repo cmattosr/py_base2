@@ -1,0 +1,3 @@
+ Minha primeira nota	tech	Estra é a primeira entrada
+ Minha segunda nota	geral	Esta é a segunda entrada
+ Minha terceira nota	tech	Esta é a terceira entrada
