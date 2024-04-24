@@ -2,7 +2,7 @@ A precedencia de operadores no Python.
 Além da precedencia de operadores aritméticos PEMDAS também existe a tabela de precedência de operadores da própria linguagem:
 
 
-![ algoritmos](./docs/d03p04_algoritmos.jpg) .
+![](/docs/d03p04_algoritmos.jpg)
 
 
 Algoritmos
