@@ -124,4 +124,3 @@ with open("009_reservas.txt", "a") as file_:
     file_.write(f"{cliente}, {quarto}, {dias}\n")
 
 print(f"{cliente}, você escolheu o qusrto {nome_quarto} por R$ {valor:.2f} por {dias} dias")
-    

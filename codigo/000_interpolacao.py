@@ -2,6 +2,10 @@
 """Imprime a mensagem de um e-mail
 
 NAO MANDE SPAM!!!
+
+Para iniciar o servidor SMTP: python -m smtpd -c DebuggingServer -n localhost:8025
+
+Para executar:  python .\000_interpolacao.py .\000_emails.txt .\000_email_template.txt
 """
 __version__ = "0.1.1"
 

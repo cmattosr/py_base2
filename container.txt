@@ -13,7 +13,7 @@ Para conectar no mesmo container a partir de outro prompt:
     > docker ps
 # conectar no container:
     > docker exec -it <container_id_or_name> /bin/bash
-    > exemplo: docker exec -it fa33be60746a /bin/bash
+    > exemplo: docker exec -it f77a5bf04646 /bin/bash
 
 Para manter os pacotes instalados e gerar uma nova imagem:
     > docker commit <container_id> your_new_image_name
