@@ -166,4 +166,4 @@ Criar um bloco de anotações python3 note.py write que pergunta titulo, tag, te
 
 Guia de referencia:
 
-![alt text](image.png)
+![](/images/d03p02_image.png.png)

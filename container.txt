@@ -37,3 +37,6 @@ Para ativar p ambiente virtual:
 > source .venv/bin/activate
 
 
+Shortcuts:
+docker run -it -v C:\python_base\codigo:/code -w /code --entrypoint=/bin/bash python
+source .venv/bin/activate
