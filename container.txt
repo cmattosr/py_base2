@@ -40,3 +40,6 @@ Para ativar p ambiente virtual:
 Shortcuts:
 docker run -it -v C:\python_base\codigo:/code -w /code --entrypoint=/bin/bash python
 source .venv/bin/activate
+
+Problema de credencial no git:
+> git config --global credential.helper wincred
